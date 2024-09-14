@@ -9,6 +9,9 @@ CORS(app)  # Enable CORS
 # Load the pre-trained model
 model = pickle.load(open('model.pkl', 'rb'))
 
+@app.route("/", methods=["GET"])
+def helloworld():
+    return "Hello World"
 
 @app.route("/predict", methods=["POST"])
 def predict_house_price():
