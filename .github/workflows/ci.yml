@@ -69,14 +69,14 @@ jobs:
       - name: Deploy to Vercel (development)
         if: github.ref == 'refs/heads/development'
         run: |
-          vercel --prod --token=$VERCEL_TOKEN --env=development
+          vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --env=development
 
       - name: Deploy to Vercel (staging)
         if: github.ref == 'refs/heads/staging'
         run: |
-          vercel --prod --token=$VERCEL_TOKEN --env=staging
+          vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --env=staging
 
       - name: Deploy to Vercel (production)
         if: github.ref == 'refs/heads/main'
         run: |
-          vercel --prod --token=$VERCEL_TOKEN --env=production
+          vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --env=production
