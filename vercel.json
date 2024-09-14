@@ -2,11 +2,11 @@
     "version": 2,
     "builds": [
         {
-        "src": "api/flaskRoute.py",
-        "use": "@vercel/python"
+            "src": "api/flaskRoute.py",
+            "use": "@vercel/python"
         }
     ],
     "rewrites": [
-        { "source": "/api/(.*)", "destination": "/api/flaskRoute.py" }
+        { "source": "/(.*)", "destination": "/api/flaskRoute.py" }
     ]
 }
