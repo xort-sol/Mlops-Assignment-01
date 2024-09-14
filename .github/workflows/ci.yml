@@ -1,3 +1,86 @@
+# name: CI Pipeline
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   # test:
+#   #   runs-on: ubuntu-latest
+#   #   steps:
+#   #     - name: Checkout code
+#   #       uses: actions/checkout@v3
+
+#   #     - name: Set up Python
+#   #       uses: actions/setup-python@v4
+#   #       with:
+#   #         python-version: '3.10'
+
+#   #     - name: Install dependencies
+#   #       run: |
+#   #         pip install -r requirements.txt
+#   #         pip install pytest
+
+#   #     - name: Run unit tests
+#   #       run: |
+#   #         echo Testing
+#   # lint:
+#   #   runs-on: ubuntu-latest
+#   #   steps:
+#   #     - name: Checkout code
+#   #       uses: actions/checkout@v3
+
+#   #     - name: Install dependencies
+#   #       run: pip install flake8
+
+#   #     - name: Run linting
+#   #       run: flake8 .
+
+#   # build-and-test:
+#   #   runs-on: ubuntu-latest
+#   #   strategy:
+#   #     matrix:
+#   #       environment: [development, staging, production]
+
+#   #   steps:
+#   #     - name: Checkout code
+#   #       uses: actions/checkout@v3
+
+#   #     - name: Set environment variables
+#   #       run: echo "ENVIRONMENT=${{ matrix.environment }}" >> $GITHUB_ENV
+
+#   #     - name: Run environment-specific build and test
+#   #       run: |
+#   #         # Install environment dependencies, run tests
+#   #         echo "Building and testing for ${{ matrix.environment }}"
+          
+#   Deploy-Preview:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.x'  
+#       - name: Setting backend
+#         run: 
+
+#       - name: Install Vercel CLI
+#         run: npm install --global vercel
+
+#       - name: Pull Vercel Environment Information
+#         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+#       - name: Build Project Artifacts
+#         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+#       - name: Deploy Project Artifacts
+#         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --confirm
+
+
 name: CI Pipeline
 
 on:
@@ -6,55 +89,7 @@ on:
       - main
 
 jobs:
-  # test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
-
-  #     - name: Set up Python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.10'
-
-  #     - name: Install dependencies
-  #       run: |
-  #         pip install -r requirements.txt
-  #         pip install pytest
-
-  #     - name: Run unit tests
-  #       run: |
-  #         echo Testing
-  # lint:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
-
-  #     - name: Install dependencies
-  #       run: pip install flake8
-
-  #     - name: Run linting
-  #       run: flake8 .
-
-  # build-and-test:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       environment: [development, staging, production]
-
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
-
-  #     - name: Set environment variables
-  #       run: echo "ENVIRONMENT=${{ matrix.environment }}" >> $GITHUB_ENV
-
-  #     - name: Run environment-specific build and test
-  #       run: |
-  #         # Install environment dependencies, run tests
-  #         echo "Building and testing for ${{ matrix.environment }}"
-          
+  # Define the job to deploy the project
   Deploy-Preview:
     runs-on: ubuntu-latest
     steps:
@@ -64,9 +99,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'  
-      - name: Setting backend
-        run: 
+          python-version: '3.x'  # Specify the Python version you need
 
       - name: Install Vercel CLI
         run: npm install --global vercel
