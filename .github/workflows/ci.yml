@@ -106,7 +106,7 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint index.py
+        pylint predict.py
 
   # Define the job to deploy the project
   # Deploy-Preview:
