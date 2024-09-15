@@ -109,25 +109,48 @@ jobs:
 #         pylint predict.py
 
   # Define the job to deploy the project
-  Deploy-Preview:
+  # Deploy-Preview:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v4
+  #       with:
+  #         python-version: '3.10'  # Specify the Python version you need
+
+  #     - name: Install Vercel CLI
+  #       run: npm install --global vercel
+
+  #     - name: Pull Vercel Environment Information
+  #       run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }} 
+
+  #     - name: Build Project Artifacts
+  #       run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+  #     - name: Deploy Project Artifacts
+  #       run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --confirm
+
+
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'  # Specify the Python version you need
-
-      - name: Install Vercel CLI
-        run: npm install --global vercel
-
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }} 
-
-      - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy Project Artifacts
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --confirm
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Display Python version
+      run: python -c "import sys; print(sys.version)"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+        pip install -r requirements.txt        
+    - name: Install project
+      run: |
+        pip install -e .
+    - name: Test with pytest
+      run: |
+        pytest
