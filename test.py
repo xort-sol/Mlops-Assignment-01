@@ -11,7 +11,7 @@ def client():
 def test_predict_route(client):
     # Define the input data to be sent to the predict route
     input_data = {
-        'avg_income': 100000.0,
+        'avg_income': 100000.0,a
         'house_age': 10.0,
         'num_rooms': 3.0,
         'num_bedrooms': 3.0,
